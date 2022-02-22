@@ -121,8 +121,10 @@ Order robots from RobotSpareBin Industries Inc
 
 *** Keywords ***
 Open the robot order website
-    ${Secrets}=  Get Secret    Robotsparebin
-    Open Available Browser     ${Secrets}[url]
+    ${secret}=    Get Secret     Robotsparebin
+    Open Available Browser       ${secret}[url]
+
+
 Get orders
     [Arguments]      ${url}=https://robotsparebinindustries.com/orders.csv
          Download     ${url}      overwrite=True
@@ -168,7 +170,7 @@ Go to order another robot
 Create a ZIP file of the receipts
     ${RobotSpareBin}=    Set Variable   ${OUTPUT_DIR}${/}receipt.zip
     Archive Folder With Zip    ${OUTPUT_DIR}    ${RobotSpareBin}    recursive=True
-    Log To Console    Done
+    
   
 >>>>>>> 68590c3 (firstcommit)
     
